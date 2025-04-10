@@ -14,13 +14,13 @@ function startMiddleware(port) {
 
   app.get('/record', (req, res) => {
     const { id_nodo, temperatura, humedad, co2, volatiles } = req.query;
-    console.log('[GET] Datos recibidos:', { id_nodo, temperatura, humedad, co2, volatiles });
+     console.log(`[GET][Puerto ${port}] Datos recibidos:`, { id_nodo, temperatura, humedad, co2, volatiles });
     res.status(200).send('Datos GET recibidos correctamente');
   });
 
   app.post('/record', (req, res) => {
     const { id_nodo, temperatura, humedad, co2, volatiles } = req.body;
-    console.log('[POST] Datos recibidos:', { id_nodo, temperatura, humedad, co2, volatiles });
+     console.log(`[POST][Puerto ${port}] Datos recibidos:`, { id_nodo, temperatura, humedad, co2, volatiles });
     res.status(200).send('Datos POST recibidos correctamente');
   });
 
