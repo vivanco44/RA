@@ -20,16 +20,12 @@ function startMiddleware(port) {
 
   function publicarDatos(data, method) {
     const clima = {
-      port,
-      method,
       id_nodo: data.id_nodo,
       temperatura: data.temperatura,
       humedad: data.humedad
     };
 
     const gases = {
-      port,
-      method,
       id_nodo: data.id_nodo,
       co2: data.co2,
       volatiles: data.volatiles
