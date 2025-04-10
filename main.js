@@ -2,9 +2,13 @@
 const { exec } = require('child_process');
 const startMiddleware = require('./middleware');
 
+
+require('./broker'); // Esto inicia el broker en el puerto 6000
+
 // Iniciar middlewares
 startMiddleware(3001);
 startMiddleware(3002);
+
 
 // Iniciar HAProxy en el puerto 2000 usando un archivo de configuración
 exec('haproxy -f haproxy.cfg', (error, stdout, stderr) => {
