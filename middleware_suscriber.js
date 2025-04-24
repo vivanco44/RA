@@ -7,7 +7,7 @@ const mysql = require('mysql2');
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'tu_contraseña', // Reemplaza con tu contraseña
+  password: '', // Reemplaza con tu contraseña
   database: 'sensores_db'     // Asegúrate de que esta base de datos exista
 });
 
