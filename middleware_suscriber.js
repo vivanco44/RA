@@ -6,8 +6,8 @@ const mysql = require('mysql2');
 // Configuración de la conexión a la base de datos MySQL
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: 'alumno', // Reemplaza con tu contraseña
+  user: 'usuario',
+  password: 'alumno123@', // Reemplaza con tu contraseña
   database: 'sensores_db'     // Asegúrate de que esta base de datos exista
 });
 
