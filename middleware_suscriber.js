@@ -16,14 +16,14 @@ const mqttClient = mqtt.connect('mqtt://localhost:6000');
 
 // Conexión exitosa al broker
 mqttClient.on('connect', () => {
-  console.log('✅ Suscriptor conectado al broker MQTT');
+  console.log('Suscriptor conectado al broker MQTT');
 
   // Suscribirse a los temas de interés
   mqttClient.subscribe(['sensores/clima', 'sensores/gases'], (err) => {
     if (err) {
-      console.error('❌ Error al suscribirse a los temas:', err);
+      console.error('Error al suscribirse a los temas:', err);
     } else {
-      console.log('📡 Suscrito a los temas: sensores/clima y sensores/gases');
+      console.log('Suscrito a los temas: sensores/clima y sensores/gases');
     }
   });
 });
@@ -38,9 +38,9 @@ mqttClient.on('message', (topic, message) => {
       const query = 'INSERT INTO clima (id_nodo, temperatura, humedad, timestamp) VALUES (?, ?, ?, NOW())';
       db.execute(query, [id_nodo, temperatura, humedad], (err) => {
         if (err) {
-          console.error('❌ Error al insertar en la tabla clima:', err);
+          console.error('Error al insertar en la tabla clima:', err);
         } else {
-          console.log(`✅ Datos de clima guardados: Nodo ${id_nodo}`);
+          console.log(`Datos de clima guardados: Nodo ${id_nodo}`);
         }
       });
     } else if (topic === 'sensores/gases') {
@@ -48,13 +48,13 @@ mqttClient.on('message', (topic, message) => {
       const query = 'INSERT INTO gases (id_nodo, co2, volatiles, timestamp) VALUES (?, ?, ?, NOW())';
       db.execute(query, [id_nodo, co2, volatiles], (err) => {
         if (err) {
-          console.error('❌ Error al insertar en la tabla gases:', err);
+          console.error('Error al insertar en la tabla gases:', err);
         } else {
-          console.log(`✅ Datos de gases guardados: Nodo ${id_nodo}`);
+          console.log(`Datos de gases guardados: Nodo ${id_nodo}`);
         }
       });
     }
   } catch (err) {
-    console.error('❌ Error al procesar el mensaje:', err);
+    console.error('Error al procesar el mensaje:', err);
   }
 });
