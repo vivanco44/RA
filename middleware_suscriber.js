@@ -4,6 +4,7 @@ const mqtt = require('mqtt');
 const mysql = require('mysql2');
 
 // Configuración de la conexión a la base de datos MySQL
+//contrasena grafana: alumno123@A
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'usuario',
