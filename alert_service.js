@@ -55,12 +55,12 @@ client.on('message', (topic, message) => {
 
     if (topic === 'sensores/clima') {
       if (data.temperatura > UMBRALES.temperatura) {
-        const msg = `🔥 ALERTA: Alta temperatura (${data.temperatura}°C) en nodo ${data.id_nodo}`;
+        const msg = `🔥 ALERTA: Alta temperatura (${data.temperatura}°C) en sensor ${data.id_nodo}`;
         console.warn(msg);
         enviarAlertaPorCorreo('Alerta de temperatura', msg);
       }
       if (data.humedad < UMBRALES.humedad) {
-        const msg = `💧 ALERTA: Baja humedad (${data.humedad}%) en nodo ${data.id_nodo}`;
+        const msg = `💧 ALERTA: Baja humedad (${data.humedad}%) en sensor ${data.id_nodo}`;
         console.warn(msg);
         enviarAlertaPorCorreo('Alerta de humedad', msg);
       }
@@ -68,12 +68,12 @@ client.on('message', (topic, message) => {
 
     if (topic === 'sensores/gases') {
       if (data.co2 > UMBRALES.co2) {
-        const msg = `😵 ALERTA: CO₂ elevado (${data.co2} ppm) en nodo ${data.id_nodo}`;
+        const msg = `😵 ALERTA: CO₂ elevado (${data.co2} ppm) en sensor ${data.id_nodo}`;
         console.warn(msg);
         enviarAlertaPorCorreo('Alerta de CO₂', msg);
       }
       if (data.volatiles > UMBRALES.volatiles) {
-        const msg = `🧪 ALERTA: Volátiles elevados (${data.volatiles}) en nodo ${data.id_nodo}`;
+        const msg = `🧪 ALERTA: Volátiles elevados (${data.volatiles}) en sensor ${data.id_nodo}`;
         console.warn(msg);
         enviarAlertaPorCorreo('Alerta de compuestos volátiles', msg);
       }
