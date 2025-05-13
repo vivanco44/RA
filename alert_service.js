@@ -16,9 +16,11 @@ const UMBRALES = {
 // ✉️ Configura tu transportador SMTP
 const transporter = nodemailer.createTransport({
   service: 'gmail',
+  port: 465,
+  secure: true,
   auth: {
     user: 'redesavanzadasalertasensores@gmail.com',      // <-- pon aquí tu correo
-    pass: 'alumnos123@A'         // <-- pon aquí tu contraseña de aplicación
+    pass: 'lbrx kmot mooq vbyv'         // <-- pon aquí tu contraseña de aplicación
   }
 });
 
