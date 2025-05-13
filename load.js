@@ -1,35 +1,40 @@
 const axios = require('axios');
 
 // Número de solicitudes a enviar
-const numRequests = 100; // Puedes cambiar este número a lo que necesites
+const numRequests = 100;
 
-// Función para generar datos aleatorios para el POST
+// Función para generar datos aleatorios
 function generateRandomData() {
   return {
-    id_nodo: `Nav${Math.floor(Math.random() * 10) + 1}`, // Ejemplo: Nav1, Nav2, ..., Nav10
-    temperatura: Math.floor(Math.random() * 35) + 15,  // Rango de temperatura: 15-50 grados
-    humedad: Math.floor(Math.random() * 50) + 30,      // Rango de humedad: 30-80%
-    co2: Math.floor(Math.random() * 500) + 200,        // Rango de CO2: 200-700 ppm
-    volatiles: Math.floor(Math.random() * 10) + 1       // Rango de compuestos volátiles: 1-10
+    id_nodo: `Nav${Math.floor(Math.random() * 10) + 1}`,
+    temperatura: Math.floor(Math.random() * 35) + 15,
+    humedad: Math.floor(Math.random() * 50) + 30,
+    co2: Math.floor(Math.random() * 500) + 200,
+    volatiles: Math.floor(Math.random() * 10) + 1
   };
 }
 
-// Función para enviar una solicitud POST
-function sendPostRequest() {
-  const data = generateRandomData();
-
-  axios.post('http://localhost:2000/record', data, {
-    headers: { 'Content-Type': 'application/json' }
-  })
-  .then((response) => {
-    console.log('POST exitoso:', response.status);
-  })
-  .catch((error) => {
-    console.error('Error en POST:', error.message);
-  });
+// Retardo de n milisegundos
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// Enviar múltiples solicitudes POST
-for (let i = 0; i < numRequests; i++) {
-  sendPostRequest();
+// Función principal asincrónica
+async function enviarSolicitudes() {
+  for (let i = 0; i < numRequests; i++) {
+    const data = generateRandomData();
+
+    try {
+      const response = await axios.post('http://localhost:2000/record', data, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      console.log(`(${i + 1}/${numRequests}) ✅ POST exitoso:`, response.status);
+    } catch (error) {
+      console.error(`(${i + 1}/${numRequests}) ❌ Error en POST:`, error.message);
+    }
+
+    await delay(1000); // Espera 1 segundo antes del siguiente POST
+  }
 }
+
+enviarSolicitudes();
