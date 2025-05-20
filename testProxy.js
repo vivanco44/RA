@@ -37,7 +37,7 @@ async function enviarSolicitudes() {
       }
     }
 
-    await delay(100); // Prueba con 10 req/s para activar el limitador
+    await delay(50); // Prueba con 10 req/s para activar el limitador
   }
 }
 
