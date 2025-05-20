@@ -27,6 +27,7 @@ function startMiddleware(port) {
   });
 
   app.post('/record', (req, res) => {
+      console.log('📥 Body recibido:', req.body); // <- DEBUG
     try {
       const encryptedPayload = req.body.payload;
       const data = decryptData(encryptedPayload);
