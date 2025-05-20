@@ -25,7 +25,7 @@ async function enviarSolicitudes() {
     const data = generateRandomData();
 
     try {
-      const response = await axios.post('http://localhost:2000/sensor-data', data, {
+      const response = await axios.post('http://localhost:2000/record', data, {
         headers: { 'Content-Type': 'application/json' }
       });
       console.log(`(${i + 1}/${numRequests}) ✅ POST exitoso:`, response.status);

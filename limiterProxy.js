@@ -21,5 +21,5 @@ app.use('/', createProxyMiddleware({
 }));
 
 app.listen(2000, () => {
-  console.log('Proxy con rate limiting activo en http://localhost:1999');
+  console.log('Proxy con rate limiting activo en http://localhost:2000');
 });
