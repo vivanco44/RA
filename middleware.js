@@ -6,10 +6,6 @@ function startMiddleware(port) {
 
   const mqttClient = mqtt.connect('mqtt://localhost:6000'); // Conexión al broker
 
-  mqttClient.on('connect', () => {
-    console.log(Middleware en puerto ${port} conectado al broker MQTT);
-  });
-
   app.use(express.json());
   app.set('trust proxy', true);
 
