@@ -10,7 +10,6 @@ function startMiddleware(port) {
   app.set('trust proxy', true);
 
   app.use((req, res, next) => {
-    console.log([${req.method}] IP real del cliente: ${req.ip});
     next();
   });
 
