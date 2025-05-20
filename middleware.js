@@ -8,17 +8,6 @@ function startMiddleware(port) {
 
   mqttClient.on('connect', () => {
     console.log(`🔗 Middleware en puerto ${port} conectado al broker MQTT`);
-
-    
-        
-          
-    
-
-        
-        Expand All
-    
-    @@ -18,37 +26,31 @@ function startMiddleware(port) {
-  
   });
   app.use(express.json());
   app.set('trust proxy', true);
