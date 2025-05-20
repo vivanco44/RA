@@ -1,5 +1,8 @@
 const express = require('express');
 const mqtt = require('mqtt');
+const CryptoJS = require('crypto-js');
+
+const secretKey = 'mi_clave_secreta'; // La clave para cifrar y descifrar
 
 function startMiddleware(port) {
   const app = express();
@@ -18,7 +21,7 @@ function startMiddleware(port) {
     next();
   });
 
-  function publicarDatos(data, method) {
+  function publicarDatos(data) {
     const clima = {
       id_nodo: data.id_nodo,
       temperatura: data.temperatura,
@@ -35,20 +38,31 @@ function startMiddleware(port) {
     mqttClient.publish('sensores/gases', JSON.stringify(gases));
   }
 
-  app.get('/record', (req, res) => {
-    const data = req.query;
-    console.log(`[GET][Puerto ${port}] Datos recibidos:`, data);
-
-    publicarDatos(data, 'GET');
-    res.status(200).send('Datos GET recibidos y enviados por MQTT');
-  });
+  function decryptPayload(encrypted) {
+    try {
+      const bytes = CryptoJS.AES.decrypt(encrypted, secretKey);
+      const decryptedText = bytes.toString(CryptoJS.enc.Utf8);
+      return JSON.parse(decryptedText);
+    } catch (error) {
+      throw new Error('Error al descifrar payload');
+    }
+  }
 
   app.post('/record', (req, res) => {
-    const data = req.body;
-    console.log(`[POST][Puerto ${port}] Datos recibidos:`, data);
+    const { payload } = req.body;
+    console.log(`[POST][Puerto ${port}] Payload cifrado recibido:`, payload);
 
-    publicarDatos(data, 'POST');
-    res.status(200).send('Datos POST recibidos y enviados por MQTT');
+    try {
+      const data = decryptPayload(payload);
+      console.log(`[POST][Puerto ${port}] Datos descifrados:`, data);
+
+      publicarDatos(data);
+
+      res.status(200).send('✅ Datos descifrados y enviados por MQTT');
+    } catch (error) {
+      console.error(`[POST][Puerto ${port}] ${error.message}`);
+      res.status(400).send('❌ Error al descifrar payload');
+    }
   });
 
   app.listen(port, () => {
