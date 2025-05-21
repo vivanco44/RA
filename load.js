@@ -2,7 +2,8 @@ const axios = require('axios');
 const crypto = require('crypto');
 
 // Configuración AES
-const ENCRYPTION_KEY = crypto.randomBytes(32); // Clave de 256 bits
+const ENCRYPTION_KEY = Buffer.from('12345678901234567890123456789012');
+ // Clave de 256 bits
 const IV = crypto.randomBytes(16); // Vector de inicialización de 128 bits
 
 // Número de solicitudes a enviar
