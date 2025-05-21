@@ -27,7 +27,7 @@ const transporter = nodemailer.createTransport({
 function enviarAlertaPorCorreo(asunto, mensaje) {
   const mailOptions = {
     from: '"Alerta Sensor" <redesavanzadasalertasensores@gmail.com>',
-    to: 'marta.almeida.4102@gmail.com',   // <-- correo de destino
+    to: 'alejandromvm4@gmail.com',   // <-- correo de destino
     subject: asunto,
     text: mensaje
   };
