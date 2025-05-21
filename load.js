@@ -1,4 +1,9 @@
 const axios = require('axios');
+const crypto = require('crypto');
+
+// Configuración AES
+const ENCRYPTION_KEY = crypto.randomBytes(32); // Clave de 256 bits
+const IV = crypto.randomBytes(16); // Vector de inicialización de 128 bits
 
 // Número de solicitudes a enviar
 const numRequests = 100;
@@ -14,6 +19,14 @@ function generateRandomData() {
   };
 }
 
+// Función para cifrar datos con AES-256-CBC
+function encryptData(data) {
+  const cipher = crypto.createCipheriv('aes-256-cbc', ENCRYPTION_KEY, IV);
+  let encrypted = cipher.update(JSON.stringify(data), 'utf8', 'base64');
+  encrypted += cipher.final('base64');
+  return encrypted;
+}
+
 // Retardo de n milisegundos
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -23,11 +36,16 @@ function delay(ms) {
 async function enviarSolicitudes() {
   for (let i = 0; i < numRequests; i++) {
     const data = generateRandomData();
+    const encryptedData = encryptData(data);
 
     try {
-      const response = await axios.post('http://localhost:2000/record', data, {
+      const response = await axios.post('http://localhost:2000/record', {
+        payload: encryptedData,
+        iv: IV.toString('base64') // para que el receptor pueda descifrar
+      }, {
         headers: { 'Content-Type': 'application/json' }
       });
+
       console.log(`(${i + 1}/${numRequests}) ✅ POST exitoso:`, response.status);
     } catch (error) {
       console.error(`(${i + 1}/${numRequests}) ❌ Error en POST:`, error.message);
