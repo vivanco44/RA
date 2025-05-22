@@ -7,7 +7,7 @@ const ENCRYPTION_KEY = Buffer.from('12345678901234567890123456789012');
 const IV = crypto.randomBytes(16); // Vector de inicialización de 128 bits
 
 // Número de solicitudes a enviar
-const numRequests = 10;
+const numRequests = 100;
 
 // Función para generar datos aleatorios
 function generateRandomData() {
