@@ -52,7 +52,7 @@ async function enviarSolicitudes() {
       console.error(`(${i + 1}/${numRequests}) ❌ Error en POST:`, error.message);
     }
 
-    await delay(1000); // Espera 1 segundo antes del siguiente POST
+    //await delay(1000); // Espera 1 segundo antes del siguiente POST
   }
 }
 
