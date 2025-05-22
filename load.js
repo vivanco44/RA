@@ -26,9 +26,9 @@ async function enviarSolicitudes() {
       const response = await axios.post('http://localhost:2000/record', data, {
         headers: { 'Content-Type': 'application/json' }
       });
-      console.log(`(${i + 1}/${numRequests}) ✅ POST exitoso:`, response.status);
+      console.log(`(${i + 1}/${numRequests}) POST exitoso:`, response.status);
     } catch (error) {
-      console.error(`(${i + 1}/${numRequests}) ❌ Error en POST:`, error.message);
+      console.error(`(${i + 1}/${numRequests}) Error en POST:`, error.message);
     }
     await delay(1000); // Espera 1 segundo antes del siguiente POST
   }

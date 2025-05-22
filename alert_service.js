@@ -13,7 +13,7 @@ const UMBRALES = {
   volatiles: 0.7
 };
 
-// ✉️ Configura tu transportador SMTP
+// Configura tu transportador SMTP
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   port: 465,
@@ -34,18 +34,18 @@ function enviarAlertaPorCorreo(asunto, mensaje) {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      return console.error('❌ Error al enviar correo:', error);
+      return console.error('Error al enviar correo:', error);
     }
-    console.log(`✉️ Correo enviado: ${info.response}`);
+    console.log(`Correo enviado: ${info.response}`);
   });
 }
 
 // MQTT Lógica
 client.on('connect', () => {
-  console.log(`✅ Conectado al broker`);
+  console.log(`Conectado al broker`);
   client.subscribe(TOPICS, err => {
-    if (err) console.error('❌ Suscripción fallida:', err);
-    else console.log(`📡 Suscrito a: ${TOPICS.join(', ')}`);
+    if (err) console.error('Suscripción fallida:', err);
+    else console.log(`Suscrito a: ${TOPICS.join(', ')}`);
   });
 });
 
@@ -80,6 +80,6 @@ client.on('message', (topic, message) => {
     }
 
   } catch (err) {
-    console.error('❌ Error procesando mensaje:', err);
+    console.error('Error procesando mensaje:', err);
   }
 });
