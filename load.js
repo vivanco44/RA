@@ -40,7 +40,7 @@ async function enviarSolicitudes() {
     const encryptedData = encryptData(data);
 
     try {
-      const response = await axios.post('http://localhost:1999/record', {
+       const response = await axios.post('http://localhost:5000/record', {
         payload: encryptedData,
         iv: IV.toString('base64') // para que el receptor pueda descifrar
       }, {
