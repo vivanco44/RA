@@ -50,17 +50,6 @@ function startMiddleware(port) {
   });
 
   app.listen(port, () => {
-
-    
-          
-            
-    
-
-          
-          Expand Down
-    
-    
-  
     console.log(`✅ Middleware corriendo en http://localhost:${port}`);
   });
 }
