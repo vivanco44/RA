@@ -32,3 +32,4 @@ function startBlacklistMiddleware() {
 }
 
 module.exports = { startBlacklistMiddleware };
+startBlacklistMiddleware();
