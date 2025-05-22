@@ -27,7 +27,7 @@ function startBlacklistMiddleware() {
   });
 
   app.listen(5000, () => {
-    console.log(chalk.blueBright('[Blacklist] Middleware de filtrado escuchando en el puerto 5000'));
+    console.log(chalk.redBright('[Blacklist] Middleware de filtrado escuchando en el puerto 5000'));
   });
 }
 
