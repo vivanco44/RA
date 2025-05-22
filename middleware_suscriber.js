@@ -5,6 +5,8 @@ const mysql = require('mysql2');
 
 // Configuración de la conexión a la base de datos MySQL
 //contrasena grafana: alumno123@A
+// usuario grafana: admin
+// contrasena grafana admin
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'usuario',
