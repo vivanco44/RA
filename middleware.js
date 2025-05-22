@@ -50,7 +50,7 @@ function startMiddleware(port) {
   });
 
   app.listen(port, () => {
-    console.log(`Middleware corriendo en http://localhost:${port}`);
+    console.log('Middleware corriendo en http://localhost:${port}');
   });
 }
 module.exports = startMiddleware;
