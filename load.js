@@ -7,7 +7,7 @@ const ENCRYPTION_KEY = Buffer.from('12345678901234567890123456789012');
 const IV = crypto.randomBytes(16); // Vector de inicialización de 128 bits
 
 // Número de solicitudes a enviar
-const numRequests = 100;
+const numRequests = 10;
 
 // Función para generar datos aleatorios
 function generateRandomData() {
@@ -52,7 +52,7 @@ async function enviarSolicitudes() {
       console.error(`(${i + 1}/${numRequests}) ❌ Error en POST:`, error.message);
     }
 
-    //await delay(1000); // Espera 1 segundo antes del siguiente POST
+    await delay(1000); // Espera 1 segundo antes del siguiente POST
   }
 }
 
