@@ -1,4 +1,14 @@
+// blacklist.js
 const blacklist = new Set([
-  '192.168.1.100',
-  '127.0.0.1', // si quieres bloquear tu propio localhost para probar
+  // Puedes poner IPs aquí, por ejemplo:
+   '127.0.0.1'
 ]);
+
+function isBlacklisted(ip) {
+  return blacklist.has(ip);
+}
+
+module.exports = {
+  isBlacklisted,
+  blacklist
+};
