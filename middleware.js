@@ -2,9 +2,8 @@ const express = require('express');
 const mqtt = require('mqtt');
 const crypto = require('crypto');
 
-// ⚠️ CLAVE AES FIJA (32 bytes para AES-256)
-// Debe ser igual a la usada por el cliente
-const ENCRYPTION_KEY = Buffer.from('12345678901234567890123456789012'); // Ejemplo: 32 caracteres
+//CLAVE AES FIJA (32 bytes para AES-256)
+const ENCRYPTION_KEY = Buffer.from('12345678901234567890123456789012'); 
 
 function decryptAES(encryptedBase64, ivBase64) {
   const iv = Buffer.from(ivBase64, 'base64');
@@ -59,13 +58,13 @@ function startMiddleware(port) {
       publicarDatos(decryptedData);
       res.status(200).send('Datos POST descifrados y enviados por MQTT');
     } catch (err) {
-      console.error(`[POST][Puerto ${port}] ❌ Error al descifrar:`, err.message);
+      console.error(`[POST][Puerto ${port}] Error al descifrar:`, err.message);
       res.status(400).send('Error al descifrar los datos');
     }
   });
 
   app.listen(port, () => {
-    console.log(`✅ Middleware corriendo en http://localhost:${port}`);
+    console.log(`Middleware corriendo en http://localhost:${port}`);
   });
 }
 
