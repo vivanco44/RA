@@ -5,7 +5,7 @@ const TokenBucket = require('./TokenBucket');
 const app = express();
 app.use(express.json());
 
-const bucket = new TokenBucket(5, 10); // 5 req/seg, hasta 10 en ráfaga
+const bucket = new TokenBucket(5, 10); 
 
 app.use(async (req, res) => {
   if (bucket.tryConsume()) {
@@ -28,5 +28,5 @@ app.use(async (req, res) => {
 });
 
 app.listen(1999, () => {
-  console.log('🚦 Proxy con Token Bucket corriendo en http://localhost:1999');
+  console.log('Proxy con Token Bucket corriendo en http://localhost:1999');
 });
