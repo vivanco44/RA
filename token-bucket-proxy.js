@@ -19,7 +19,7 @@ app.use(async (req, res) => {
 
       res.status(response.status).send(response.data);
     } catch (err) {
-      console.error('❌ Error al reenviar:', err.message);
+      console.error('Error al reenviar:', err.message);
       res.status(502).send('Error al reenviar la solicitud');
     }
   } else {
