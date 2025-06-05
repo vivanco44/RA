@@ -1,6 +1,5 @@
-// blacklist.js
 const blacklist = new Set([
-  // Puedes poner IPs aquí, por ejemplo:
+  // Aqui poner la IP que quiero banear
   // '127.0.0.1'
 ]);
 
