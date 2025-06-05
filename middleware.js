@@ -34,7 +34,13 @@ function startMiddleware(port) {
   }
 
   app.get('/record', (req, res) => {
-    const data = req.query;
+    const data = {
+    id_nodo: req.query.id_nodo,
+    temperatura: Number(req.query.temperatura),
+    humedad: Number(req.query.humedad),
+    co2: Number(req.query.co2),
+    volatiles: Number(req.query.volatiles)
+  };
     console.log(`[GET][Puerto ${port}] Datos recibidos:`, data);
 
     publicarDatos(data, 'GET');
